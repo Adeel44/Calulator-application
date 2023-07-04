@@ -1,0 +1,10 @@
+<div (click)="handleOnClickPlus()">{{metadataplus.label}}</div>
+<div (click)="handleOnClickMinus()">{{metadataminus.label}}</div>
+
+<div (click)="handleOnClickMulti()">&times;</div>
+<div (click)="handleOnClickDivide()">&divide;</div>
+
+<!-- <div (click)="pressNum('*')">&times;</div>
+<div (click)="pressNum('/')">&divide;</div> -->
+
+<div class="equal" id="result" (click)="calculateValue()">{{metadatacalculate.label}}</div>

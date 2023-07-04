@@ -1,0 +1,31 @@
+
+
+<div class="calculator">
+  
+<app-display [currentScreenValue]="screenValue"></app-display>
+ 
+  <div class="d">
+
+    <div class="operators">
+      
+      <!-- <app-operator-container   (childEvent)="childData($event)"></app-operator-container> -->
+    </div>
+
+    <app-button-container (childEvent)="onButtonClick($event)" ></app-button-container>
+
+    <div class="operators">
+    <app-operator-container   (childEvent)="childData($event)"></app-operator-container>
+  </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
