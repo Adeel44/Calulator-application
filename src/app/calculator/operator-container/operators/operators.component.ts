@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { ButtonInput, CalculatorService } from '../../services/calculator.service';
 
 
@@ -10,7 +10,7 @@ import { ButtonInput, CalculatorService } from '../../services/calculator.servic
 export class OperatorsComponent {
 
   screenValue!: string;
-  result="";
+  result = "";
 
 
   constructor(public calcultorService: CalculatorService) {
@@ -20,82 +20,43 @@ export class OperatorsComponent {
 
     console.log("changes")
   }
-  
-
-  @Input() metadataplus!: ButtonInput;
-  @Input() metadataminus!: ButtonInput;
-  @Input() metadatamulty!: ButtonInput;
-  @Input() metadatadivide!: ButtonInput;
-  @Input() metadatacalculate!: ButtonInput;
-
 
   @Output() childEvent = new EventEmitter();
 
+  //pass data  from operator component to parent operator-cantainer component through button click functions
+  calculateValue(data: ButtonInput) {
 
+    this.childEvent.emit(data);
+  }
 
-  calculateValue(){
-  
-      this.childEvent.emit(this.metadatacalculate);
-      
-      
+  handleOnClickPlus(data: ButtonInput) {
+    this.childEvent.emit(data);
+  }
+
+  handleOnClickMinus(data: ButtonInput) {
+    this.childEvent.emit(data);
+  }
+
+  handleOnClickMulti(data: ButtonInput) {
+
+    this.screenValue = this.calcultorService.screenValue
+    //condition * not in start
+    if (data.label == '*' && this.screenValue.length < 1) {
+      return
     }
+    this.childEvent.emit(data);
+  }
 
-    handleOnClickPlus(){
+  handleOnClickDivide(data: ButtonInput) {
+    //  debugger
     this.screenValue = this.calcultorService.screenValue
     const PrevKey = this.screenValue[this.screenValue.length - 1];
-    if (PrevKey === '/' || PrevKey === '*' || PrevKey === '-' || PrevKey === '+' || PrevKey === '.') {
-      // let current = this.calcultorService.screenValue;
-      // this.childEvent.emit(current);
+    //condition / not in start
+    if (data.label == '/' && this.screenValue.length < 1) {
       return
     }
-    else {
-      this.childEvent.emit(this.metadataplus);
+    this.childEvent.emit(data);
 
-    }
-
-
-    }
-    handleOnClickMinus(){
-      this.screenValue = this.calcultorService.screenValue
-    const PrevKey = this.screenValue[this.screenValue.length - 1];
-    if (PrevKey === '/' || PrevKey === '*' || PrevKey === '-' || PrevKey === '+' || PrevKey === '.') {
-      // let current = this.calcultorService.screenValue;
-      // this.childEvent.emit(current);
-      return
-    }
-    else {
-      this.childEvent.emit(this.metadataminus);
-
-    }
-
-    }
-
-    handleOnClickMulti(){
-     
-      this.screenValue = this.calcultorService.screenValue
-      const PrevKey = this.screenValue[this.screenValue.length - 1];
-      if (PrevKey === '/' || PrevKey === '*' || PrevKey === '-' || PrevKey === '+' || PrevKey === '.') {
-        return
-      }
-      else {
-        this.childEvent.emit(this.metadatamulty);
-  
-      }
-
-    }
-    handleOnClickDivide(){
-      this.screenValue = this.calcultorService.screenValue
-      const PrevKey = this.screenValue[this.screenValue.length - 1];
-      if (PrevKey === '/' || PrevKey === '*' || PrevKey === '-' || PrevKey === '+' || PrevKey === '.') {
-        // let current = this.calcultorService.screenValue;
-        // this.childEvent.emit(current);
-        return
-      }
-      else {
-        this.childEvent.emit(this.metadatadivide);
-  
-      }
-
-    }
+  }
 
 }

@@ -5,31 +5,27 @@
     <!-- <div class="input" id="input" >{{screenValue}}</div> -->
 
     <div class="numbers">
-      <div (click)="handleOnClick6()">{{metadata6.label}}</div>
-      <div (click)="handleOnClick7()">{{metadata7.label}}</div>
-      <div (click)="handleOnClick8()">{{metadata8.label}}</div>
-      <div (click)="handleOnClick9()">{{metadata9.label}}</div>
-      
+      <div (click)="handleOnClick6({label: 6, type: 'number'})">6</div>
+      <div (click)="handleOnClick7({label: 7, type: 'number'})">7</div>
+      <div (click)="handleOnClick8({label: 8, type: 'number'})">8</div>
+      <div (click)="handleOnClick9({label: 9, type: 'number'})">9</div>
+     
      
     </div>
     <div class="numbers">
-      <div (click)="handleOnClick2()">{{metadata2.label}}</div>
-      <div (click)="handleOnClick3()">{{metadata3.label}}</div>
-      <div (click)="handleOnClick()">{{metadata.label}}</div>
-      <div (click)="handleOnClick5()">{{metadata5.label}}</div>
-      <!-- <div (click)="handleOnClick6()">{{metadata6.label}}</div> -->
-
+      <div (click)="handleOnClick2({label: 2, type: 'number'})">2</div>
+      <div (click)="handleOnClick3({label: 3, type: 'number'})">3</div>
+     
+      <div (click)="handleOnClick({label: 4, type: 'number'})">4</div>
+      <div (click)="handleOnClick5({label: 5, type: 'number'})">5</div>
+      
 
     </div>
     <div class="numbers">
-      <div (click)="handleOnClick0()">0</div>
-      <div (click)="handleOnClick1()">{{metadata1.label}}</div>
-      <div (click)="onClickdot()">.</div>   
-      <div id="clear" (click)="handleOnClear()">C</div>
-
-      <!-- <div (click)="handleOnClick2()">{{metadata2.label}}</div>
-      <div (click)="handleOnClick3()">{{metadata3.label}}</div> -->
-       
+      <div (click)="handleOnClick0({label: 0, type: 'number'})">0</div>
+      <div (click)="handleOnClick1({label: 1, type: 'number'})">1</div>
+      <div (click)="onClickdot({label: '.', type: 'number'})">.</div>   
+      <div id="clear" (click)="handleOnClear({label:'C', type: 'opertor'})">C</div>
 
     </div>
     

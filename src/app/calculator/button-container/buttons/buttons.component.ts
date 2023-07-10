@@ -9,117 +9,124 @@ import { ButtonInput, CalculatorService } from '../../services/calculator.servic
   styleUrls: ['./buttons.component.css']
 })
 export class ButtonsComponent {
-  
+
   screenValue = ""
-  
-  
-  @Input() metadata!: ButtonInput;
-  @Input() metadata5!: ButtonInput;
-  @Input() metadata6!: ButtonInput;
-  @Input() metadata7!: ButtonInput;
-  @Input() metadata8!: ButtonInput;
-  @Input() metadata9!: ButtonInput;
-  @Input() metadata0!: ButtonInput;
-  @Input() metadata1!: ButtonInput;
-  @Input() metadata2!: ButtonInput;
-  @Input() metadata3!: ButtonInput;
-  @Input() metadatadot!: ButtonInput;
-  @Input() metadataclear!: ButtonInput;
 
   @Output() childEvent = new EventEmitter<ButtonInput>();
-    //@Output() childEvent = new EventEmitter();
-
+  //  @Output() childEvent = new EventEmitter();
 
   constructor(public calcultorService: CalculatorService) {
-
-    
   }
 
+  //pass data object from button component to parent button cantainer component through button click functions
 
-  handleOnClear() {
-
-    this.childEvent.emit(this.metadataclear)
-
+  handleOnClick(event: ButtonInput) {
+    this.childEvent.emit(event)
   }
 
+  handleOnClick5(data: ButtonInput) {
 
-  handleOnClick(){
-    this.childEvent.emit(this.metadata)
+    this.childEvent.emit(data)
+  }
+  handleOnClick6(data: ButtonInput) {
+
+    this.childEvent.emit(data)
   }
 
-  handleOnClick5(){
-    
-    this.childEvent.emit(this.metadata5)
-
-    
-  }
-  handleOnClick6(){
-    debugger
-   
-    this.childEvent.emit(this.metadata6)
-  }
-
-  handleOnClick7(){
-    
-
-    // let screenValue = this.calcultorService.screenValue += this.metadata7.label;
-    // this.childEvent.emit(screenValue)
-       this.childEvent.emit(this.metadata7)
+  handleOnClick7(data: ButtonInput) {
+    this.childEvent.emit(data)
 
   }
-  handleOnClick8(){
+  handleOnClick8(data: ButtonInput) {
 
-    this.childEvent.emit(this.metadata8)
+    this.childEvent.emit(data)
   }
-  handleOnClick9(){
+  handleOnClick9(data: ButtonInput) {
 
-    this.childEvent.emit(this.metadata9)
+    this.childEvent.emit(data)
   }
-  handleOnClick1(){
+  handleOnClick1(data: ButtonInput) {
 
-    this.childEvent.emit(this.metadata1)
+    this.childEvent.emit(data)
   }
-  handleOnClick2(){
+  handleOnClick2(data: ButtonInput) {
 
+
+    this.childEvent.emit(data)
+
+  }
+  handleOnClick3(data: ButtonInput) {
+
+    this.childEvent.emit(data)
+
+  }
+  handleOnClick0(data: ButtonInput) {
     //debugger
-    this.childEvent.emit(this.metadata2)
+    this.screenValue = this.calcultorService.screenValue
+    let res = this.screenValue.toString().slice(-1);
+    console.log(res)
+
+    const PrevKey = this.screenValue[this.screenValue.length - 2];
+    if (PrevKey === '*' && res === "0") {
+      return
+
+    }
+    if (PrevKey === '+' && res === "0") {
+      return
+
+    }
+    if (PrevKey === '/' && res === "0") {
+      return
+
+    }
+    if (PrevKey === '-' && res === "0") {
+      return
+
+    }
+
+    let checks = this.calcultorService.screenValue
+    // condition for cannot put 0 in start 
+    if (checks == '0' && checks.length === 1) {
+      return
+    } else {
+      this.childEvent.emit(data)
+    }
 
   }
-  handleOnClick3(){
-    this.childEvent.emit(this.metadata3)
+  handleOnClear(data: ButtonInput) {
+
+    this.childEvent.emit(data)
 
   }
-  handleOnClick0(){
-    this.childEvent.emit(this.metadata0)
+
+  onClickdot(data: ButtonInput) {
+    //debugger
+    // condition for . 
+    if (data.label == '.' && data.type == 'number') {
+      const lastNum = this.getLastOperand()
+      console.log("LAst index of .:" + lastNum.lastIndexOf("."))
+
+      if (lastNum.lastIndexOf(".") >= 0) {
+        return
+      }
+
+    }
+    this.childEvent.emit(data)
   }
 
-  onClickdot(){
-    
+  getLastOperand() {
 
     this.screenValue = this.calcultorService.screenValue
-    const PrevKey = this.screenValue[this.screenValue.length - 1];
-    if (PrevKey === '/' || PrevKey === '*' || PrevKey === '-' || PrevKey === '+' || PrevKey === '.') {
-      // let oldValue = this.calcultorService.screenValue;
-      // this.childEvent.emit(oldValue);
-      return
-    }
-    else {
-      // let screenValue = this.calcultorService.screenValue += this.metadatadot.label;
-       this.childEvent.emit(this.metadatadot)
+    let pos: number;
+    console.log(this.screenValue)
+    pos = this.screenValue.toString().lastIndexOf("+")
 
-    }
+    if (this.screenValue.toString().lastIndexOf("-") > pos) pos = this.screenValue.toString().lastIndexOf("-")
+    if (this.screenValue.toString().lastIndexOf("*") > pos) pos = this.screenValue.toString().lastIndexOf("*")
+    if (this.screenValue.toString().lastIndexOf("/") > pos) pos = this.screenValue.toString().lastIndexOf("/")
 
+    console.log('Last ' + this.screenValue.toString().substr(pos + 1))
+    return this.screenValue.toString().substr(pos + 1)
   }
-
-  
-
-  
-
-
-
-
-  
-  
-
 
 }

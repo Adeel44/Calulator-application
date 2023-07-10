@@ -7,21 +7,13 @@ import { ButtonInput } from '../services/calculator.service';
   styleUrls: ['./button-container.component.css']
 })
 export class ButtonContainerComponent {
-  
-  
 
   @Output() childEvent = new EventEmitter<ButtonInput>();
 
-
+//passing event object from button cantainer  to parent  cantainer component through Output 
   onButtonClick(event:ButtonInput){
-   
-    //this.childEvent.emit(this.metadata)
     this.childEvent.emit(event)
-
   }
-
-
-
 
 
 }

@@ -20,14 +20,9 @@ export class DisplayComponent implements OnInit  ,OnChanges{
     
     this.screenValue = this.currentScreenValue
     console.log("S"+this.screenValue)
-   
-    
 
     this.calcultorService.screenValue = this.screenValue;
     console.log("crrentvlue"+this.screenValue)
-
-    
-
      
    }
 
@@ -37,6 +32,7 @@ export class DisplayComponent implements OnInit  ,OnChanges{
 
       this.calcultorService.screenValue = this.screenValue;
       console.log("cr"+this.screenValue)
+
    }
 
 

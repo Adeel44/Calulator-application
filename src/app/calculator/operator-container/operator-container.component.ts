@@ -7,14 +7,15 @@ import { ButtonInput } from '../services/calculator.service';
   styleUrls: ['./operator-container.component.css']
 })
 export class OperatorContainerComponent {
-  metadata!:ButtonInput
+  //metadata!:ButtonInput
   
   @Output() childEvent = new EventEmitter<ButtonInput>();
 
+  //passing event object from opertor cantainer  to parent  cantainer component through Output 
+
   onButtonClick(event:ButtonInput){
-    console.log(event)
-    this.metadata= event;
-    this.childEvent.emit(this.metadata)
+    
+    this.childEvent.emit(event)
 
   }
 

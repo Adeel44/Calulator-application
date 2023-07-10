@@ -1,10 +1,9 @@
-<div (click)="handleOnClickPlus()">{{metadataplus.label}}</div>
-<div (click)="handleOnClickMinus()">{{metadataminus.label}}</div>
+<div (click)="handleOnClickPlus({label: '+', type: 'operator'})">+</div>
+<div (click)="handleOnClickMinus({label: '-', type: 'operator'})">-</div>
 
-<div (click)="handleOnClickMulti()">&times;</div>
-<div (click)="handleOnClickDivide()">&divide;</div>
+<div (click)="handleOnClickMulti({label: '*', type: 'operator'})">&times;</div>
+<div (click)="handleOnClickDivide({label: '/', type: 'operator'})">&divide;</div>
 
-<!-- <div (click)="pressNum('*')">&times;</div>
-<div (click)="pressNum('/')">&divide;</div> -->
 
-<div class="equal" id="result" (click)="calculateValue()">{{metadatacalculate.label}}</div>
+
+<div class="equal" id="result" (click)="calculateValue({label: '=', type: 'operator'})">=</div>
