@@ -30,7 +30,13 @@ export class OperatorsComponent {
   }
 
   handleOnClickPlus(data: ButtonInput) {
+    this.screenValue = this.calcultorService.screenValue
+    //condition * not in start
+    if (data.label == '+' && this.screenValue.length < 1) {
+      return
+    }
     this.childEvent.emit(data);
+
   }
 
   handleOnClickMinus(data: ButtonInput) {

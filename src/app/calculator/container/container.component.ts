@@ -17,9 +17,7 @@ export class ContainerComponent {
   constructor(public calcultorService: CalculatorService) {
 
   }
-  childData(event: any) {
-
-    debugger
+  onClickOperatorButton(event: any) {
   
 
     this.screenValue = this.calcultorService.screenValue
@@ -118,6 +116,8 @@ export class ContainerComponent {
 
     const PrevKey = this.screenValue[this.screenValue.length - 1];
     const opkey= this.screenValue[this.screenValue.length - 2];
+    // conditions after 0 can not put more 0
+
     if (PrevKey == '0' && opkey === '+' && event.type == 'number'&& event.label!= '.'){
       let screenValue=this.screenValue.slice(0, -1);
       screenValue= screenValue+ event.label.toString()
@@ -158,6 +158,11 @@ export class ContainerComponent {
 
     if (event.type == 'number'&& this.screenValue=== this.result){
       this.screenValue=""
+    }
+    
+    // checking the . in start 
+    if (event.label == '.' && this.screenValue == '') {
+      return
     }
     
     if (event.type == 'number') {
